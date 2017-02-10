@@ -1057,3 +1057,14 @@ def _SetUpLoadedBuffer( command, filename, fix, position, watch ):
 
   if position == 'end':
     vim.command( 'silent! normal! Gzz' )
+
+
+def GetLine( filepath, line ):
+  """Get the whole line of the file at line"""
+  ( buffer_num, close_window ) = _OpenFileInSplitIfNeeded( filepath )
+
+  if close_window:
+    vim.command( 'lclose' )
+    vim.command( 'hide' )
+
+  return vim.buffers[ buffer_num ][ line ]
