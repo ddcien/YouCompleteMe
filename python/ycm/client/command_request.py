@@ -143,6 +143,11 @@ def _BuildQfListItem( goto_data_item ):
     qf_item[ 'filename' ] = ToUnicode( goto_data_item[ 'filepath' ] )
   if 'description' in goto_data_item:
     qf_item[ 'text' ] = ToUnicode( goto_data_item[ 'description' ] )
+  else:
+    qf_item[ 'text' ] = ToUnicode(
+            vimsupport.GetLine(
+                goto_data_item[ 'filepath' ],
+                int( goto_data_item[ 'line_num' ] ) - 1 ) )
   if 'line_num' in goto_data_item:
     qf_item[ 'lnum' ] = goto_data_item[ 'line_num' ]
   if 'column_num' in goto_data_item:
